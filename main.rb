@@ -95,9 +95,7 @@ class Main
     else
       open_cards
     end
-    puts "Карты игрока - #{players[0].player_cards}, очки - #{@player_sum}, деньги - #{players[0].bank}"
-    puts "Карты дилера - #{players[1].player_cards}, очки - #{@dealer_sum}, деньги - #{players[1].bank}"
-    puts "Деньги в банке - #{game_bank}"
+    result
     game_menu
   end
 
@@ -143,9 +141,7 @@ class Main
               players[0].bank += 10
               players[1].bank += 10
     end
-    puts "Карты игрока - #{players[0].player_cards}, очки - #{@player_sum}, деньги - #{players[0].bank}"
-    puts "Карты дилера - #{players[1].player_cards}, очки - #{@dealer_sum}, деньги - #{players[1].bank}"
-    puts "Деньги в банке - #{game_bank.to_i}\n\n"
+    result
     puts "Продолжить - 1, выход - 0"
     menu = gets.chomp
 
@@ -163,6 +159,12 @@ class Main
       puts "Игра окончена, всего хорошего!!!\n\n"
       exit
     end
+  end
+
+  def result
+    puts "Карты игрока - #{players[0].player_cards}, очки - #{@player_sum}, деньги - #{players[0].bank}"
+    puts "Карты дилера - #{players[1].player_cards}, очки - #{@dealer_sum}, деньги - #{players[1].bank}"
+    puts "Деньги в банке - #{game_bank}\n\n"
   end
 end
 
