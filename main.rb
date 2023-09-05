@@ -82,13 +82,13 @@ class Main
   def calc(player)
     xx = player.player_cards.map(&:first)
     sum = xx.map { |x| HASH[x] }.sum
-    sum -= 10 if xx.include?('A') && sum > 21
+    xx.each { |x| sum -= 10 if sum > 21 && x == 'A' }
     sum
   end
 
   def skip
     puts 'Ход переходит к Дилеру'
-    if @dealer_sum < 17
+    if @dealer_sum < 17 && players[1].player_cards.length.to_i < 2
         players[1].player_cards << cards.delete_at(0)
         @dealer_sum = calc(players[1])
         open_cards
@@ -102,7 +102,7 @@ class Main
   end
 
   def add_a_card
-    if @dealer_sum < 17
+    if @dealer_sum < 17 && players[1].player_cards.length < 2
       players[0].player_cards << cards.delete_at(0)
       players[1].player_cards << cards.delete_at(0)
       @dealer_sum = calc players[1]
@@ -120,7 +120,7 @@ class Main
       players[1].player_cards << cards.delete_at(0)
       @dealer_sum = calc players[1]
     end
-    
+
     puts 'Итоги игры:'
     if @player_sum < @dealer_sum && @dealer_sum < 22
       puts "Победил Дилер"
@@ -159,7 +159,9 @@ class Main
         puts "У Диллера или Игрока закончились деньги!!!"
         exit
       end
-    when '0' then exit
+    when '0' then 
+      puts "Игра окончена, всего хорошего!!!\n\n"
+      exit
     end
   end
 end
