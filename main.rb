@@ -40,9 +40,7 @@ class Main
     @player_sum = calc players[0]
     @dealer_sum = calc(players[1])
     puts "Карты игрока - #{players[0].player_cards}, очки - #{@player_sum}, деньги - #{players[0].bank}"
-    print "Карты дилера - "
-    print '* ' * players[1].player_cards.length
-    puts ", деньги - #{players[1].bank}"
+    print "Карты дилера - " + '* ' * players[1].player_cards.length + ", деньги - #{players[1].bank}\n"
     puts "Деньги в банке - #{game_bank}"
     game_menu
   end
